@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidSamplerAS</string>
+    <string name="title_activity_music_pads">MusicPads</string>
 </resources>

@@ -15,10 +15,22 @@ public class MainActivity extends AppCompatActivity {
     Uri path;
     int time;
     final MediaPlayer mp = new MediaPlayer();
+
+    private Button mBtLaunchActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mBtLaunchActivity = (Button) findViewById(R.id.bt_launch_activity);
+        mBtLaunchActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                launchActivity();
+            }
+        });
 
 
 
@@ -64,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void launchActivity() {
+
+        Intent intent = new Intent(this, MusicPads.class);
+        startActivity(intent);
+    }
 
     void setFileSource() {
         try {
