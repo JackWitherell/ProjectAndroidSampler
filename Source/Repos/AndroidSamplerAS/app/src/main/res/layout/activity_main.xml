@@ -16,7 +16,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/textView" />
 
     <Button
         android:id="@+id/button"
@@ -26,5 +27,40 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="128dp"
         android:text="Choose Audio File" />
+
+    <Button
+        android:id="@+id/buttonplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
+        android:text="Playback" />
+
+    <Button
+        android:id="@+id/buttonRewind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonplay"
+        android:layout_toStartOf="@+id/textView"
+        android:text="Rewind" />
+
+    <Button
+        android:id="@+id/button5sff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonsetpos"
+        android:layout_alignBottom="@+id/buttonsetpos"
+        android:layout_toEndOf="@+id/buttonplay"
+        android:text="seektoPos" />
+
+    <Button
+        android:id="@+id/buttonsetpos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="37dp"
+        android:layout_toStartOf="@+id/buttonplay"
+        android:text="setPos" />
 
 </android.widget.RelativeLayout>
