@@ -11,6 +11,7 @@ import android.widget.Button;
 public class MusicPads extends AppCompatActivity {
     private Button mBtGoBack;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,18 @@ public class MusicPads extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button Music_pad_1 = (Button) findViewById(R.id.pad_1);
+
+        Music_pad_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+            }
+        });
+
+
+
     }
 
 }

@@ -24,8 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="124dp"
+        android:layout_toEndOf="@+id/buttonRewind"
         android:text="Choose Audio File" />
 
     <Button
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/button"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="18dp"
         android:text="Playback" />
 
     <Button
@@ -49,9 +49,8 @@
         android:id="@+id/button5sff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttonsetpos"
-        android:layout_alignBottom="@+id/buttonsetpos"
-        android:layout_toEndOf="@+id/buttonplay"
+        android:layout_alignEnd="@+id/buttonplay"
+        android:layout_alignTop="@+id/buttonsetpos"
         android:text="seektoPos" />
 
     <Button
@@ -59,8 +58,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
-        android:layout_marginTop="37dp"
-        android:layout_toStartOf="@+id/buttonplay"
+        android:layout_marginTop="19dp"
+        android:layout_toStartOf="@+id/button"
         android:text="setPos" />
 
     <Button
@@ -68,9 +67,8 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonplay"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:text="Music Pads ->" />
 
 </android.widget.RelativeLayout>

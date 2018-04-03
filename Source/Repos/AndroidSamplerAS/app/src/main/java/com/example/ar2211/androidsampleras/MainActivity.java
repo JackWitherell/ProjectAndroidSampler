@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import java.util.*;
 
 import static android.media.MediaPlayer.SEEK_NEXT_SYNC;
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Uri path;
     int time;
     final MediaPlayer mp = new MediaPlayer();
+    Vector TriggerHappy = new Vector();
 
     private Button mBtLaunchActivity;
 
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         buttonset.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 time=mp.getCurrentPosition();
+                TriggerHappy.addElement(time);
             }
         });
     }
