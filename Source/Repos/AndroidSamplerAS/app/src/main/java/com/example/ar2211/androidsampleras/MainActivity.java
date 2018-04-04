@@ -16,7 +16,11 @@ public class MainActivity extends AppCompatActivity {
     Uri path;
     int time;
     final MediaPlayer mp = new MediaPlayer();
-    Vector TriggerHappy = new Vector();
+    int[] TriggerHappy = new int[1];
+
+    Intent intent = new Intent(thisActivity.this, nextActivity.class);
+    intent.putExtra("PTArray", PTFindings);
+    startActivity(intent);
 
     private Button mBtLaunchActivity;
 
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         buttonset.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 time=mp.getCurrentPosition();
-                TriggerHappy.addElement(time);
+                TriggerHappy[0] = time;
             }
         });
     }

@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import static android.media.MediaPlayer.SEEK_NEXT_SYNC;
+
 public class MusicPads extends AppCompatActivity {
     private Button mBtGoBack;
 
@@ -32,6 +34,7 @@ public class MusicPads extends AppCompatActivity {
         Music_pad_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+
 
             }
         });
