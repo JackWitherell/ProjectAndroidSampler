@@ -9,19 +9,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import java.util.*;
+import java.io.Serializable;
 
 import static android.media.MediaPlayer.SEEK_NEXT_SYNC;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Serializable{
     Uri path;
     int time;
     final MediaPlayer mp = new MediaPlayer();
-    int[] TriggerHappy = new int[1];
-
-    Intent intent = new Intent(thisActivity.this, nextActivity.class);
-    intent.putExtra("PTArray", PTFindings);
-    startActivity(intent);
-
+    ArrayList<String> TriggerHappy = new ArrayList<String>();
     private Button mBtLaunchActivity;
 
     @Override
@@ -78,11 +74,19 @@ public class MainActivity extends AppCompatActivity {
         buttonset.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 time=mp.getCurrentPosition();
-                TriggerHappy[0] = time;
+                TriggerHappy.add(Integer.toString(time));
             }
         });
     }
 
+    //https://www.youtube.com/watch?v=JXjOxy2W_w0 used this to pass array list
+    public void passArrayList (View view){
+        Intent Triggers = new Intent(MainActivity.this, MusicPads.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Triggers", TriggerHappy);
+        Triggers.putExtra("bundle", bundle);
+        startActivity(Triggers);
+    }
     private void launchActivity() {
 
         Intent intent = new Intent(this, MusicPads.class);

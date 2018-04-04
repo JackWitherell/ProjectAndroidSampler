@@ -20,7 +20,10 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_music_pads" />
+    <include
+        layout="@layout/content_music_pads"
+        app:layout_anchor="@+id/fab"
+        app:layout_anchorGravity="right|center" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
