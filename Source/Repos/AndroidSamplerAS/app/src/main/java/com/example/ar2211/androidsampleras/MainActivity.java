@@ -9,6 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.ar2211.androidsampleras.PlayerVisualizerView;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import static android.media.MediaPlayer.SEEK_NEXT_SYNC;
 
 public class MainActivity extends AppCompatActivity {
@@ -86,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "DEMO"),1001);
     }
 
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -94,6 +104,26 @@ public class MainActivity extends AppCompatActivity {
             path = data.getData();
             setFileSource();
         }
+         binding = DataBindingUtil.setContentView(this,R.id.custView);
+
+        findViewById(R.id.custView).updateVisualizer(fileToBytes(new File(path.getPath())));
     }
 
+    public static byte[] fileToBytes(File file) {
+        int size = (int) file.length();
+        byte[] bytes = new byte[size];
+        try {
+            BufferedInputStream buf = new BufferedInputStream(new FileInputStream(file));
+            buf.read(bytes, 0, bytes.length);
+            buf.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bytes;
+    }
+
+
 }
+
