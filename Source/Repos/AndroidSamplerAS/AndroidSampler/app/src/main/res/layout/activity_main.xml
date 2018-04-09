@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jackw.androidsampler.MainActivity">
+
+    <com.example.jackw.androidsampler.PlayerVisualizerView
+        android:id="@+id/custView"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="45dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="Android Audio Sampler"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="47dp"
+        android:text="Choose Audio File" />
+
+    <Button
+        android:id="@+id/buttonplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="115dp"
+        android:text="Playback" />
+
+    <Button
+        android:id="@+id/buttonInitView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="181dp"
+        android:text="Reinit View" />
+
+    <Button
+        android:id="@+id/buttonRewind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonplay"
+        android:layout_toStartOf="@+id/textView"
+        android:text="Rewind" />
+
+    <Button
+        android:id="@+id/button5sff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonsetpos"
+        android:layout_alignBottom="@+id/buttonsetpos"
+        android:layout_toEndOf="@+id/buttonplay"
+        android:text="seektoPos" />
+
+    <Button
+        android:id="@+id/buttonsetpos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="123dp"
+        android:layout_toStartOf="@+id/buttonplay"
+        android:text="setPos" />
+
+</android.widget.RelativeLayout>
