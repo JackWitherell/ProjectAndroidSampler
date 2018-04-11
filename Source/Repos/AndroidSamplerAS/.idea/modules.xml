@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidSamplerAS.iml" filepath="$PROJECT_DIR$/AndroidSamplerAS.iml" />
-      <module fileurl="file://C:\Users\Lord Vagram\Desktop\ProjectAndroidSampler\Source\Repos\AndroidSamplerAS\AndroidSamplerAS.iml" filepath="C:\Users\Lord Vagram\Desktop\ProjectAndroidSampler\Source\Repos\AndroidSamplerAS\AndroidSamplerAS.iml" />
-      <module fileurl="file://C:\Users\ldg121\Desktop\ProjectAndroidSampler\Source\Repos\AndroidSamplerAS\AndroidSamplerAS.iml" filepath="C:\Users\ldg121\Desktop\ProjectAndroidSampler\Source\Repos\AndroidSamplerAS\AndroidSamplerAS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Lord Vagram\Desktop\ProjectAndroidSampler\Source\Repos\AndroidSamplerAS\app\app.iml" filepath="C:\Users\Lord Vagram\Desktop\ProjectAndroidSampler\Source\Repos\AndroidSamplerAS\app\app.iml" />
     </modules>
   </component>
 </project>

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AndroidSamplerAS</string>
     <string name="title_activity_music_pads">MusicPads</string>
+    <string name="android_audio_sampler">Android Audio Sampler</string>
+    <string name="pad1">Pad1</string>
+    <string name="pad2">pad2</string>
+    <string name="pad3">Pad3</string>
 </resources>
