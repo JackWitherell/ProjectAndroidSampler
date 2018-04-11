@@ -8,42 +8,166 @@
     tools:context="com.example.ar2211.androidsampleras.MusicPads">
 
     <TextView
-        android:id="@+id/tv_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Hello User"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:text="@string/android_audio_sampler"
+        android:id="@+id/textView2" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="29dp"
+        android:text="@string/pad1" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button"
+        android:layout_toEndOf="@+id/button"
+        android:text="@string/pad2" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button"
+        android:layout_toEndOf="@+id/button2"
+        android:text="@string/pad3" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginTop="84dp"
+        android:text="Pad4" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button4"
+        android:layout_alignStart="@+id/button2"
+        android:text="Pad5" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button3"
+        android:layout_alignTop="@+id/button4"
+        android:text="Pad6" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginTop="140dp"
+        android:text="Pad7" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button2"
+        android:layout_alignTop="@+id/button7"
+        android:text="Pad8" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button3"
+        android:layout_alignTop="@+id/button7"
+        android:text="Pad9" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginTop="196dp"
+        android:text="Pad10" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button2"
+        android:layout_alignTop="@+id/button10"
+        android:text="Pad11" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button3"
+        android:layout_alignTop="@+id/button10"
+        android:text="Pad12" />
+
+    <Button
+        android:id="@+id/button16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button"
+        android:layout_below="@+id/button10"
+        android:text="Pad13" />
+
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button2"
+        android:layout_alignTop="@+id/button16"
+        android:text="Pad14" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button3"
+        android:layout_alignTop="@+id/button16"
+        android:text="Pad15" />
+
+    <Button
+        android:id="@+id/button19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button"
+        android:layout_below="@+id/button16"
+        android:text="Pad16" />
 
     <Button
         android:id="@+id/bt_go_back"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView2"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="19dp"
-        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="15dp"
         android:text="Sampler" />
 
-    <Button
-        android:id="@+id/pad_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tv_message"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="44dp"
-        android:text="Pad#1" />
-
     <TextView
-        android:id="@+id/display_trigger"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tv_message"
-        android:layout_below="@+id/pad_1"
-        android:layout_marginTop="71dp"
+        android:layout_above="@+id/bt_go_back"
+        android:layout_marginBottom="61dp"
+        android:layout_toEndOf="@+id/button17"
         android:text="TextView" />
+
+
 
 
 </RelativeLayout>

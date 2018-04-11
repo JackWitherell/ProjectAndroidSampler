@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PassingStuffTest</string>
+    <string name="title_activity_recieving_stuff">RecievingStuff</string>
+</resources>

@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity implements Serializable{
     Uri path;
     int time;
     final MediaPlayer mp = new MediaPlayer();
-    ArrayList<String> TriggerHappy = new ArrayList<String>();
     private Button mBtLaunchActivity;
+    String Triggers = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,12 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             @Override
             public void onClick(View view) {
 
-                launchActivity();
+                String temp = Triggers;
+                Intent i = new Intent(getBaseContext(), MusicPads.class);
+                i.putExtra("key", temp);
+                startActivity(i);
+
+                //launchActivity();
             }
         });
 
@@ -74,24 +79,27 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         buttonset.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 time=mp.getCurrentPosition();
-                TriggerHappy.add(Integer.toString(time));
+                buildString(Integer.toString(time));
             }
         });
     }
 
     //https://www.youtube.com/watch?v=JXjOxy2W_w0 used this to pass array list
-    public void passArrayList (View view){
-        Intent Triggers = new Intent(MainActivity.this, MusicPads.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("Triggers", TriggerHappy);
-        Triggers.putExtra("bundle", bundle);
-        startActivity(Triggers);
+    public void buildString(String text){
+        if (Triggers == "")
+        {
+            Triggers = Triggers + text;
+        }
+        else
+        {
+            Triggers = Triggers + "," + text;
+        }
     }
-    private void launchActivity() {
+    /*private void launchActivity() {
 
         Intent intent = new Intent(this, MusicPads.class);
         startActivity(intent);
-    }
+    }*/
 
     void setFileSource() {
         try {

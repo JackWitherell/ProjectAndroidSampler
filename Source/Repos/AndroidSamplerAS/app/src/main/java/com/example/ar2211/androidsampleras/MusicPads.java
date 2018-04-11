@@ -1,5 +1,6 @@
 package com.example.ar2211.androidsampleras;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,24 +11,52 @@ import android.widget.Button;
 import android.os.Bundle;
 import java.util.*;
 import android.widget.TextView;
-import java.util.ArrayList;
+import com.example.ar2211.androidsampleras.MainActivity;
+
+
 
 import static android.media.MediaPlayer.SEEK_NEXT_SYNC;
 
 public class MusicPads extends AppCompatActivity {
     private Button mBtGoBack;
-    ArrayList<String> TriggerHappy = new ArrayList<String>();
+    public int[] Triggers;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_pads);
 
-        Bundle bundleTriggers = getIntent().getExtras();
-        TriggerHappy = (ArrayList<String>) bundleTriggers.getSerializable("Triggers");
-        TextView textView1 = (TextView) findViewById(R.id.display_trigger);
+        Intent i = getIntent();
+        String Trigger = "";
+        //The second parameter below is the default string returned if the value is not there.
+        Trigger = i.getStringExtra("key");
+        if(Trigger != null) {
+            String delims = ",";
+            String[] tokens = Trigger.split(delims);
+            for(int x = 0; x > tokens.length; x++)
+            {
+                String number = tokens[x];
+                Triggers[x] =  Integer.parseInt(number);
+            }
 
-        textView1.setText( TriggerHappy.get(0));
+
+
+
+            TextView txtInput2 = (TextView) findViewById(R.id.textView);
+            txtInput2.setText(Trigger);
+        }
+        else {
+            TextView txtInput2 = (TextView) findViewById(R.id.textView);
+            txtInput2.setText("Trigger was null" );
+        }
+        //start converting the array of string to array of ints
+
+
+
+
 
         mBtGoBack = (Button) findViewById(R.id.bt_go_back);
 
@@ -36,16 +65,6 @@ public class MusicPads extends AppCompatActivity {
             public void onClick(View view) {
 
                 finish();
-            }
-        });
-
-        Button Music_pad_1 = (Button) findViewById(R.id.pad_1);
-
-        Music_pad_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-
-
             }
         });
 
