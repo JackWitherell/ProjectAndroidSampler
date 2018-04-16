@@ -6,7 +6,10 @@ import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.*;
+
+import java.util.Arrays;
 
 public class PlayerVisualizerView extends View {
 
@@ -32,15 +35,23 @@ public class PlayerVisualizerView extends View {
     private int width;
     private int height;
     private float progress;
+    private float amp;
+    private float[] amps = new float[200];
 
     public PlayerVisualizerView(Context context) {
         super(context);
         init();
+        progress=0;
+        amp=0.5f;
+        Arrays.fill(amps,-1);
     }
 
     public PlayerVisualizerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
+        progress=0;
+        amp=0.5f;
+        Arrays.fill(amps,-1);
     }
 
     private void init() {
@@ -59,12 +70,12 @@ public class PlayerVisualizerView extends View {
      */
     public void updateVisualizer(byte[] bytes) {
         this.bytes = bytes;
-        progress=0;
         invalidate();
     }
-    public void updateLoc(float track_progress) {
+    public void updateLoc(float track_progress, float ampy) {
         progress=track_progress;
         invalidate();
+        amp= (float) (((1.5*amp)+(ampy*0.5))/2);
     }
 
     /**
@@ -92,7 +103,8 @@ public class PlayerVisualizerView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (bytes == null || width == 0) {
+        canvas.drawRect(0,dp(VISUALIZER_HEIGHT)-(amp*dp(VISUALIZER_HEIGHT)),width,dp(VISUALIZER_HEIGHT),notPlayedStatePainting);
+        /*if (bytes == null || width == 0) {
             return;
         }
         float totalBarsCount = width / dp(1);
@@ -149,9 +161,20 @@ public class PlayerVisualizerView extends View {
                 }
                 barNum++;
             }
-
-            canvas.drawRect(width*progress,0,(width*progress)+dp(1),dp(VISUALIZER_HEIGHT),notPlayedStatePainting);
+        }*/
+        for(int a=0; a<200; a++){
+            if(amps[a]!=-1) {
+                canvas.drawRect(((float)a/200)*width,(1-amps[a])*dp(VISUALIZER_HEIGHT),(((float)(a+1)/200))*width,dp(VISUALIZER_HEIGHT),playedStatePainting);
+            }
+            else{
+                a=201;
+            }
         }
+        if(amps[(int)(progress*200)]==-1){
+            amps[(int)(progress*200)]=amp;
+            Log.d("meme",""+((int)(progress*200)));
+        }
+        canvas.drawRect(width*progress,0,(width*progress)+dp(1),dp(VISUALIZER_HEIGHT),notPlayedStatePainting);
     }
 
     public int dp(float value) {

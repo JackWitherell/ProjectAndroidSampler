@@ -4,11 +4,10 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.media.MediaPlayer;
+import android.media.audiofx.Visualizer;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Environment;
-import android.os.Handler;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.jackw.androidsampler.PlayerVisualizerView;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -35,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
     PlayerVisualizerView custView;
     Uri path;
     int time;
+    public float intensity = 0;
     final MediaPlayer mp = new MediaPlayer();
+    Visualizer vis;
     boolean initvis=false;
     //TextView tv = (TextView)findViewById(R.id.textView);
     @Override
@@ -48,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run(){
                 if (initvis){
-                    float progress=(float)mp.getCurrentPosition()/(float)mp.getDuration();
-                    custView.updateLoc(progress);
+
                 }
             }
         }, 0, period);
@@ -210,6 +209,22 @@ public class MainActivity extends AppCompatActivity {
         return "-1";
     }
 
+    private void initVisualizer() {
+        vis=new Visualizer(mp.getAudioSessionId());
+        vis.setDataCaptureListener(new Visualizer.OnDataCaptureListener() {
+            @Override
+            public void onWaveFormDataCapture(Visualizer visualizer, byte[] waveform, int samplingRate) {
+                intensity = ((float) waveform[0] + 128f) / 256;
+                custView.updateLoc((float)mp.getCurrentPosition()/(float)mp.getDuration(), intensity);
+                Log.d("vis", String.valueOf(intensity));
+            }
+            @Override
+            public void onFftDataCapture(Visualizer visualizer, byte[] fft, int samplingRate) {
+
+            }
+        }, Visualizer.getMaxCaptureRate(), true, false);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -222,6 +237,8 @@ public class MainActivity extends AppCompatActivity {
             File tempFile=new File(getPath(getApplicationContext(),path));
             byte[] bytes=fileToBytes(tempFile);
             custView.updateVisualizer(bytes);
+            initVisualizer();
+            vis.setEnabled(true);
             initvis=true;
         }
     }
