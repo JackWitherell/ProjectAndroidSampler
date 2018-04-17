@@ -1,6 +1,7 @@
 package com.example.ar2211.androidsampleras;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +20,8 @@ import static android.media.MediaPlayer.SEEK_NEXT_SYNC;
 
 public class MusicPads extends AppCompatActivity {
     private Button mBtGoBack;
-    public int[] Triggers;
+    public int[] Triggers = new int[16];
+
 
 
 
@@ -34,6 +36,7 @@ public class MusicPads extends AppCompatActivity {
         //The second parameter below is the default string returned if the value is not there.
         Trigger = i.getStringExtra("key");
         if(Trigger != null) {
+            int counter = 1;
             String delims = ",";
             String[] tokens = Trigger.split(delims);
             for(int x = 0; x > tokens.length; x++)
@@ -42,7 +45,16 @@ public class MusicPads extends AppCompatActivity {
                 Triggers[x] =  Integer.parseInt(number);
             }
 
+            //https://stackoverflow.com/questions/32515054/android-iterating-through-button-ids-with-a-for-loop-in-java
+            for(int y = 0; y > Triggers.length; y++)
+            {
+                Button button = (Button) findViewById(getResources().getIdentifier("button" + counter, "id",
+                        this.getPackageName()));
+                //still need to assign trigger values using the Triggers array
+                //dont forget to add null checks to this part so we dont assign null values to
+                //buttons
 
+            }
 
 
             TextView txtInput2 = (TextView) findViewById(R.id.textView);
