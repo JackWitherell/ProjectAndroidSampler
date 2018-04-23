@@ -4,25 +4,13 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.os.Bundle;
-
 import java.io.IOException;
 import android.util.Log;
-import java.net.URI;
 import java.util.*;
 import android.widget.TextView;
-import com.example.ar2211.androidsampleras.MainActivity;
-
-
-
-import static android.media.MediaPlayer.SEEK_NEXT_SYNC;
 
 public class
 MusicPads extends AppCompatActivity {

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.ar2211.androidsampleras"
-        minSdkVersion 17
+        minSdkVersion 26
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
