@@ -1,7 +1,9 @@
 package com.example.ar2211.androidsampleras;
 
+import android.Manifest;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.media.audiofx.Visualizer;
@@ -10,12 +12,14 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -39,10 +43,16 @@ public class MainActivity extends AppCompatActivity implements Serializable{
     private Button mBtLaunchActivity;
     String Triggers = "";
 
+    private int READ_EXTERNAL_STORAGE_PERMISSION_CODE=23;
+    private int RECORD_AUDIO_PERMISSION_CODE=23;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActivityCompat.requestPermissions(this,new String[{Manifest.permission.READ_EXTERNAL_STORAGE},READ_EXTERNAL_STORAGE_PERMISSION_CODE);
+        ActivityCompat.requestPermissions(this,new String[{Manifest.permission.RECORD_AUDIO},RECORD_AUDIO_PERMISSION_CODE);
 
         final long period = 200;
         new Timer().schedule(new TimerTask(){
@@ -113,6 +123,34 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             }
         });
     }
+
+    public void RecordAudioPersmission(View view){
+        if(checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)
+        {
+            getFilePath();
+        }
+        else {
+            if(shouldShowRequestPermissionRationale(Manifest.permission.RECORD_AUDIO)){
+                Toast.makeText(this, "Need in order to record your own audio", Toast.LENGTH_SHORT).show();
+            }
+            requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO},RECORD_AUDIO_PERMISSION_CODE);
+        }
+    }
+
+    public void ReadExternalStoragePersmission(View view){
+        if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+        {
+            getFilePath();
+        }
+        else {
+            if(shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)){
+                Toast.makeText(this, "Need in order to upload your own sounds", Toast.LENGTH_SHORT).show();
+            }
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},RECORD_AUDIO_PERMISSION_CODE);
+        }
+    }
+
+
 
     //https://www.youtube.com/watch?v=JXjOxy2W_w0 used this to pass array list
     public void buildString(String text){
