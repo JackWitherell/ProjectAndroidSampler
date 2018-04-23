@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.os.Bundle;
 
 import java.io.IOException;
+import android.util.Log;
 import java.net.URI;
 import java.util.*;
 import android.widget.TextView;
@@ -45,7 +46,7 @@ MusicPads extends AppCompatActivity {
         String Trigger = "";
         //The second parameter below is the default string returned if the value is not there.
         Trigger = i.getStringExtra("key");
-        path =  Uri.parse(i.getStringExtra("path"));
+        path =  i.getParcelableExtra("path");
         Arrays.fill(Triggers,0);
         if(Trigger != null) {
             String delims = ",";
@@ -88,8 +89,7 @@ MusicPads extends AppCompatActivity {
                     this.getPackageName()));
             Button button12 = (Button) findViewById(getResources().getIdentifier("button12", "id",
                     this.getPackageName()));
-            Button button13 = (Button) findViewById(getResources().getIdentifier("button13", "id",
-                    this.getPackageName()));
+            Button button13 = (Button) findViewById(R.id.button13);
             Button button14 = (Button) findViewById(getResources().getIdentifier("button14", "id",
                     this.getPackageName()));
             Button button15 = (Button) findViewById(getResources().getIdentifier("button15", "id",
@@ -169,10 +169,10 @@ MusicPads extends AppCompatActivity {
                     playNewMedia(12);
                 }
             });
-            button13.setOnClickListener(new View.OnClickListener() {
+            button13.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    playNewMedia(13);
+                    playNewMedia(12);
                 }
             });
             button14.setOnClickListener(new View.OnClickListener() {
@@ -222,6 +222,8 @@ MusicPads extends AppCompatActivity {
     }
     public void InitMp(int index) {
         try {
+            media[index]=new MediaPlayer();
+            Log.d("emm:", path.toString());
             media[index].setDataSource(this, path);
             media[index].setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override

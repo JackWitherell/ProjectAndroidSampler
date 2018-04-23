@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                 String temp = Triggers;
                 Intent i = new Intent(getBaseContext(), MusicPads.class);
                 i.putExtra("key", temp);
-                i.putExtra("path", path.toString());
+                i.putExtra("path", path);
                 startActivity(i);
 
                 //launchActivity();
@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
     void setFileSource() {
         try {
+            Log.d("emm:", path.toString());
             mp.setDataSource(this,path);
             mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
                 public void onPrepared(MediaPlayer player){
