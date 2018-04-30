@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -43,16 +44,16 @@ public class MainActivity extends AppCompatActivity implements Serializable{
     private Button mBtLaunchActivity;
     String Triggers = "";
 
-    private int READ_EXTERNAL_STORAGE_PERMISSION_CODE=23;
     private int RECORD_AUDIO_PERMISSION_CODE=23;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ActivityCompat.requestPermissions(this,new String[{Manifest.permission.READ_EXTERNAL_STORAGE},READ_EXTERNAL_STORAGE_PERMISSION_CODE);
-        ActivityCompat.requestPermissions(this,new String[{Manifest.permission.RECORD_AUDIO},RECORD_AUDIO_PERMISSION_CODE);
+        String[] permissions={Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO};
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, permissions,23);
+        }
 
         final long period = 200;
         new Timer().schedule(new TimerTask(){
