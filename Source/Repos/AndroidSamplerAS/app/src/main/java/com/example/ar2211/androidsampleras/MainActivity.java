@@ -11,8 +11,6 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -21,11 +19,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -42,8 +35,6 @@ public class MainActivity extends AppCompatActivity implements Serializable{
     boolean initvis=false;
     private Button mBtLaunchActivity;
     String Triggers = "";
-
-    private int RECORD_AUDIO_PERMISSION_CODE=23;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         }, 0, period);
 
         mBtLaunchActivity = findViewById(R.id.bt_launch_activity);
+        mBtLaunchActivity.setEnabled(false);
         mBtLaunchActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,17 +65,8 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             }
         });
 
-
-
-        Button buttonChooseFile = findViewById(R.id.button);
-        buttonChooseFile.setOnClickListener(new View.OnClickListener() {
-            public void onClick (View v){
-                getFilePath();
-            }
-
-        });
-
-        Button buttonStartPlayback= findViewById(R.id.buttonplay);
+        final Button buttonStartPlayback= findViewById(R.id.buttonplay);
+        buttonStartPlayback.setEnabled(false);
         buttonStartPlayback.setOnClickListener(new View.OnClickListener(){
             public void onClick (View v){
                 if(mp.isPlaying()){
@@ -95,66 +78,73 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             }
         });
 
-        Button buttonRewind= findViewById(R.id.buttonRewind);
+        final Button buttonRewind= findViewById(R.id.buttonRewind);
+        buttonRewind.setEnabled(false);
         buttonRewind.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 mp.seekTo(0);
             }
         });
 
-        Button buttonff= findViewById(R.id.button5sff);
+        final Button buttonff= findViewById(R.id.buttonseek);
+        buttonff.setEnabled(false);
         buttonff.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 mp.seekTo(time, SEEK_NEXT_SYNC);
             }
         });
 
-        Button buttonset= findViewById(R.id.buttonsetpos);
+        final Button buttonset= findViewById(R.id.buttonsetpos);
+        buttonset.setEnabled(false);
         buttonset.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 time=mp.getCurrentPosition();
                 buildString(Integer.toString(time));
             }
         });
+        Button buttonChooseFile = findViewById(R.id.buttonchoosefile);
+        buttonChooseFile.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View v){
+                getFilePath();
+                buttonset.setEnabled(true);
+                buttonff.setEnabled(true);
+                buttonStartPlayback.setEnabled(true);
+                buttonRewind.setEnabled(true);
+                mBtLaunchActivity.setEnabled(true);
+            }
+        });
     }
 
     public void RecordAudioPersmission(){
-        if(checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)
-        {
-            getFilePath();
+        if(checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
         }
         else {
             if(shouldShowRequestPermissionRationale(Manifest.permission.RECORD_AUDIO)){
                 Toast.makeText(this, "Need in order to record your own audio", Toast.LENGTH_SHORT).show();
             }
-            requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO},RECORD_AUDIO_PERMISSION_CODE);
+            requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO},22);
         }
     }
 
     public void ReadExternalStoragePersmission(){
-        if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
-        {
-            getFilePath();
+        if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
         }
         else {
             if(shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)){
                 Toast.makeText(this, "Need in order to upload your own sounds", Toast.LENGTH_SHORT).show();
             }
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},RECORD_AUDIO_PERMISSION_CODE);
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 23);
         }
     }
 
     public void buildString(String text){
-        if (Triggers == "")
-        {
+        if (Triggers == "") {
             Triggers = Triggers + text;
         }
-        else
-        {
+        else {
             Triggers = Triggers + "," + text;
         }
     }
-
 
     void setFileSource() {
         try {
@@ -178,11 +168,6 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         startActivityForResult(Intent.createChooser(intent, "DEMO"),1001);
     }
 
-    public MediaPlayer getMediaPlayer()
-    {
-        return mp;
-    }
-
     private void initVisualizer() {
         vis=new Visualizer(mp.getAudioSessionId());
         vis.setDataCaptureListener(new Visualizer.OnDataCaptureListener() {
@@ -199,21 +184,6 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         }, Visualizer.getMaxCaptureRate(), true, false);
     }
 
-    public static byte[] fileToBytes(File file) {
-        int size = (int) file.length();
-        byte[] bytes = new byte[size];
-        try {
-            BufferedInputStream buf = new BufferedInputStream(new FileInputStream(file));
-            buf.read(bytes, 0, bytes.length);
-            buf.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return bytes;
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -223,8 +193,6 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             setFileSource();
 
             custView=findViewById(R.id.custView);
-            File tempFile=new File(getPath(getApplicationContext(),path));
-            byte[] bytes=fileToBytes(tempFile);
             custView.updateVisualizer();
             initVisualizer();
             vis.setEnabled(true);
@@ -235,7 +203,6 @@ public class MainActivity extends AppCompatActivity implements Serializable{
     public static boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
-
 
     public static boolean isDownloadsDocument(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
@@ -263,9 +230,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
     }
 
     public static String getPath(Context context, Uri uri) {
-        // DocumentProvider
         if (DocumentsContract.isDocumentUri(context, uri)) {
-            // ExternalStorageProvider
             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
@@ -302,9 +267,4 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         }
         return "-1";
     }
-
-
-
-
-
 }

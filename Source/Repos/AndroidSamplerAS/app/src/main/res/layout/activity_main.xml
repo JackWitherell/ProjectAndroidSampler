@@ -26,21 +26,21 @@
         android:id="@+id/textView" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonchoosefile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="124dp"
-        android:layout_toEndOf="@+id/buttonRewind"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
         android:text="Choose Audio File" />
 
     <Button
         android:id="@+id/buttonplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="150dp"
         android:text="Playback" />
 
     <Button
@@ -48,25 +48,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/buttonplay"
-        android:layout_toStartOf="@+id/textView"
+        android:layout_marginLeft="45dp"
         android:text="Rewind" />
 
     <Button
-        android:id="@+id/button5sff"
+        android:id="@+id/buttonseek"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/buttonplay"
-        android:layout_alignTop="@+id/buttonsetpos"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textView"
+        android:layout_marginTop="9dp"
         android:text="seektoPos" />
 
     <Button
         android:id="@+id/buttonsetpos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="19dp"
-        android:layout_toStartOf="@+id/button"
-        android:text="setPos" />
+        android:layout_marginLeft="6dp"
+        android:layout_alignTop="@id/buttonseek"
+        android:text="setPos"
+    />
 
     <Button
         android:id="@+id/bt_launch_activity"
