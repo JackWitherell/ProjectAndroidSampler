@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.media.audiofx.Visualizer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -50,11 +49,8 @@ public class MainActivity extends AppCompatActivity implements Serializable{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String[] permissions={Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO};
-        if(ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, permissions,23);
-        }
-
+        RecordAudioPersmission();
+        ReadExternalStoragePersmission();
         final long period = 200;
         new Timer().schedule(new TimerTask(){
             @Override
@@ -65,24 +61,21 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             }
         }, 0, period);
 
-        mBtLaunchActivity = (Button) findViewById(R.id.bt_launch_activity);
+        mBtLaunchActivity = findViewById(R.id.bt_launch_activity);
         mBtLaunchActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String temp = Triggers;
                 Intent i = new Intent(getBaseContext(), MusicPads.class);
                 i.putExtra("key", temp);
                 i.putExtra("path", path);
                 startActivity(i);
-
-                //launchActivity();
             }
         });
 
 
 
-        Button buttonChooseFile = (Button) findViewById(R.id.button);
+        Button buttonChooseFile = findViewById(R.id.button);
         buttonChooseFile.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
                 getFilePath();
@@ -90,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
 
         });
 
-        Button buttonStartPlayback= (Button) findViewById(R.id.buttonplay);
+        Button buttonStartPlayback= findViewById(R.id.buttonplay);
         buttonStartPlayback.setOnClickListener(new View.OnClickListener(){
             public void onClick (View v){
                 if(mp.isPlaying()){
@@ -102,21 +95,21 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             }
         });
 
-        Button buttonRewind=(Button) findViewById(R.id.buttonRewind);
+        Button buttonRewind= findViewById(R.id.buttonRewind);
         buttonRewind.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 mp.seekTo(0);
             }
         });
 
-        Button buttonff=(Button) findViewById(R.id.button5sff);
+        Button buttonff= findViewById(R.id.button5sff);
         buttonff.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 mp.seekTo(time, SEEK_NEXT_SYNC);
             }
         });
 
-        Button buttonset=(Button) findViewById(R.id.buttonsetpos);
+        Button buttonset= findViewById(R.id.buttonsetpos);
         buttonset.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 time=mp.getCurrentPosition();
@@ -125,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         });
     }
 
-    public void RecordAudioPersmission(View view){
+    public void RecordAudioPersmission(){
         if(checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)
         {
             getFilePath();
@@ -138,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         }
     }
 
-    public void ReadExternalStoragePersmission(View view){
+    public void ReadExternalStoragePersmission(){
         if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
         {
             getFilePath();
@@ -151,9 +144,6 @@ public class MainActivity extends AppCompatActivity implements Serializable{
         }
     }
 
-
-
-    //https://www.youtube.com/watch?v=JXjOxy2W_w0 used this to pass array list
     public void buildString(String text){
         if (Triggers == "")
         {
@@ -164,11 +154,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             Triggers = Triggers + "," + text;
         }
     }
-    /*private void launchActivity() {
 
-        Intent intent = new Intent(this, MusicPads.class);
-        startActivity(intent);
-    }*/
 
     void setFileSource() {
         try {
@@ -239,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             custView=findViewById(R.id.custView);
             File tempFile=new File(getPath(getApplicationContext(),path));
             byte[] bytes=fileToBytes(tempFile);
-            custView.updateVisualizer(bytes);
+            custView.updateVisualizer();
             initVisualizer();
             vis.setEnabled(true);
             initvis=true;

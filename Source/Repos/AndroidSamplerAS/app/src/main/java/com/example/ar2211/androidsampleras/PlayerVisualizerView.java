@@ -14,17 +14,6 @@ public class PlayerVisualizerView extends View {
 
     public static final int VISUALIZER_HEIGHT = 58;
 
-    private byte[] bytes;
-
-    /**
-     * Percentage of audio sample scale
-     * Should updated dynamically while audioPlayer is played
-     */
-    private float denseness;
-
-    /**
-     * Canvas painting for sample scale, filling played part of audio sample
-     */
     private Paint playedStatePainting = new Paint();
     /**
      * Canvas painting for sample scale, filling not played part of audio sample
@@ -32,7 +21,6 @@ public class PlayerVisualizerView extends View {
     private Paint notPlayedStatePainting = new Paint();
 
     private int width;
-    private int height;
     private float progress;
     private float amp;
     private float[] amps = new float[200];
@@ -54,7 +42,6 @@ public class PlayerVisualizerView extends View {
     }
 
     private void init() {
-        bytes = null;
 
         playedStatePainting.setStrokeWidth(1f);
         playedStatePainting.setAntiAlias(true);
@@ -67,8 +54,7 @@ public class PlayerVisualizerView extends View {
     /**
      * update and redraw Visualizer view
      */
-    public void updateVisualizer(byte[] bytes) {
-        this.bytes = bytes;
+    public void updateVisualizer() {
         invalidate();
     }
     public void updateLoc(float track_progress, float ampy) {
@@ -77,26 +63,12 @@ public class PlayerVisualizerView extends View {
         amp= (float) (((1.5*amp)+(ampy*0.5))/2);
     }
 
-    /**
-     * Update player percent. 0 - file not played, 1 - full played
-     *
-     * @param percent
-     */
-    public void updatePlayerPercent(float percent) {
-        denseness = (int) Math.ceil(width * percent);
-        if (denseness < 0) {
-            denseness = 0;
-        } else if (denseness > width) {
-            denseness = width;
-        }
-        invalidate();
-    }
+
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         width = getMeasuredWidth();
-        height = getMeasuredHeight();
     }
 
     @Override
