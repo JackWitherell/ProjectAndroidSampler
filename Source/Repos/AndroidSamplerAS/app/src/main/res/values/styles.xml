@@ -1,21 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@color/background_material_light</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:colorPrimary">@color/Base3</item>
+        <item name="android:colorBackground">@color/Base02</item>
+        <item name="android:statusBarColor">@color/Base03</item>
+        <item name="android:colorAccent">@color/Magenta</item>
+        <item name="android:colorPrimaryDark">@color/Base1</item>
+        <item name="android:colorForeground">@color/Yellow</item>
+        <item name="android:navigationBarColor">@color/Base03</item>
+        <item name="android:textColorPrimary">@color/Green</item>
+        <item name="android:textColorSecondary">@color/Orange</item>
+        <item name="android:textColorSecondaryInverse">@color/Blue</item>
+        <item name="android:textColorPrimaryInverse">@color/Red</item>
     </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="ButtonDarkTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/Base02</item>
+        <item name="android:textColorPrimary">@color/Orange</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
 </resources>

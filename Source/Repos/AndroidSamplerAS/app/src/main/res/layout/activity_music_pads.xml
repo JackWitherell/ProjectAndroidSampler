@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.ar2211.androidsampleras.MusicPads">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-        android:id="@+id/ToolbarHeader"
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-
-    </android.support.design.widget.AppBarLayout>
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_second"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         tools:context="com.example.ar2211.androidsampleras.MusicPads">
 
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Base02"
+            android:id="@+id/topBar">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/android_audio_sampler"
+                android:textColor="@color/Base3"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
+        </android.support.v7.widget.Toolbar>
+
         <TextView
             android:id="@+id/textView2"
+            android:textColor="@color/Red"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@id/topBar"
             android:layout_centerHorizontal="true"
             android:text="@string/android_audio_sampler" />
 
@@ -50,7 +47,7 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/button1"
+            android:layout_toEndOf="@id/button1"
             android:layout_alignTop="@+id/button1"
             android:text="@string/pad2" />
 
@@ -58,7 +55,7 @@
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/button2"
+            android:layout_toEndOf="@id/button2"
             android:layout_alignTop="@+id/button1"
             android:text="@string/pad3" />
 
@@ -67,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/button1"
-            android:layout_toRightOf="@+id/button3"
+            android:layout_toEndOf="@+id/button3"
             android:text="Pad4" />
 
         <Button
@@ -75,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button1"
-            android:layout_alignLeft="@id/button1"
+            android:layout_alignStart="@id/button1"
             android:text="Pad5" />
 
         <Button
@@ -83,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button2"
-            android:layout_toRightOf="@id/button5"
+            android:layout_toEndOf="@id/button5"
             android:text="Pad6" />
 
         <Button
@@ -91,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button3"
-            android:layout_toRightOf="@id/button6"
+            android:layout_toEndOf="@id/button6"
             android:text="Pad7" />
 
         <Button
@@ -99,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button4"
-            android:layout_toRightOf="@id/button7"
+            android:layout_toEndOf="@id/button7"
             android:text="Pad8" />
 
         <Button
@@ -107,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button5"
-            android:layout_alignLeft="@id/button5"
+            android:layout_alignStart="@id/button5"
             android:text="Pad9" />
 
         <Button
@@ -115,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button6"
-            android:layout_toRightOf="@id/button9"
+            android:layout_toEndOf="@id/button9"
             android:text="Pad10" />
 
         <Button
@@ -123,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button7"
-            android:layout_toRightOf="@id/button10"
+            android:layout_toEndOf="@id/button10"
             android:text="Pad11" />
 
         <Button
@@ -131,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button8"
-            android:layout_toRightOf="@id/button11"
+            android:layout_toEndOf="@id/button11"
             android:text="Pad12" />
 
         <Button
@@ -139,7 +136,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button9"
-            android:layout_alignLeft="@id/button9"
+            android:layout_alignStart="@id/button9"
             android:text="Pad13" />
 
         <Button
@@ -147,7 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button10"
-            android:layout_toRightOf="@id/button13"
+            android:layout_toEndOf="@id/button13"
             android:text="Pad14" />
 
         <Button
@@ -155,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button11"
-            android:layout_toRightOf="@id/button14"
+            android:layout_toEndOf="@id/button14"
             android:text="Pad15" />
 
         <Button
@@ -163,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button12"
-            android:layout_toRightOf="@id/button15"
+            android:layout_toEndOf="@id/button15"
             android:text="Pad16" />
 
         <Button
@@ -172,8 +169,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@id/button16"
+            android:layout_alignStart="@id/button16"
             android:layout_marginBottom="15dp"
+            android:textColor="@color/Base3"
             android:text="Sampler" />
 
         <TextView
@@ -181,9 +179,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/bt_go_back"
-            android:layout_alignLeft="@+id/bt_go_back"
+            android:layout_alignStart="@+id/bt_go_back"
+            android:textColor="@color/Base3"
             android:text="TextView" />
     </RelativeLayout>
-
-
 </android.support.design.widget.CoordinatorLayout>

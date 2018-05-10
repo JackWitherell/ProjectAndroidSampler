@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="custColor">#CCAA00</color>
-    <color name="background_material_light">#888888</color>
+    <color name="Base03">#002b36</color>
+    <color name="Base02">#073642</color>
+    <color name="Base01">#586e75</color>
+    <color name="Base00">#657b83</color>
+    <color name="Base0">#839496</color>
+    <color name="Base1">#93a1a1</color>
+    <color name="Base2">#eee8d5</color>
+    <color name="Base3">#fdf6e3</color>
+    <color name="Yellow">#b58900</color>
+    <color name="Orange">#cb4b16</color>
+    <color name="Red">#dc322f</color>
+    <color name="Magenta">#d33682</color>
+    <color name="Violet">#6c71c4</color>
+    <color name="Blue">#268bd2</color>
+    <color name="Cyan">#2aa198</color>
+    <color name="Green">#859900</color>
 </resources>

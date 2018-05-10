@@ -45,10 +45,10 @@ public class PlayerVisualizerView extends View {
 
         playedStatePainting.setStrokeWidth(1f);
         playedStatePainting.setAntiAlias(true);
-        playedStatePainting.setColor(ContextCompat.getColor(getContext(), R.color.custColor));
+        playedStatePainting.setColor(ContextCompat.getColor(getContext(), R.color.Red));
         notPlayedStatePainting.setStrokeWidth(1f);
         notPlayedStatePainting.setAntiAlias(true);
-        notPlayedStatePainting.setColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+        notPlayedStatePainting.setColor(ContextCompat.getColor(getContext(), R.color.Yellow));
     }
 
     /**

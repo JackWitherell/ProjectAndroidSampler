@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                 buildString(Integer.toString(time));
             }
         });
-        Button buttonChooseFile = findViewById(R.id.buttonchoosefile);
+        final Button buttonChooseFile = findViewById(R.id.buttonchoosefile);
         buttonChooseFile.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
                 getFilePath();
@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                 buttonStartPlayback.setEnabled(true);
                 buttonRewind.setEnabled(true);
                 mBtLaunchActivity.setEnabled(true);
+                buttonChooseFile.setEnabled(false);
             }
         });
     }
